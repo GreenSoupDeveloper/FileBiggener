@@ -1,0 +1,14 @@
+C:\Users\green\source\repos\FileBiggener\FileBiggener\bin\Debug\net8.0\FileBiggener.exe
+C:\Users\green\source\repos\FileBiggener\FileBiggener\bin\Debug\net8.0\FileBiggener.deps.json
+C:\Users\green\source\repos\FileBiggener\FileBiggener\bin\Debug\net8.0\FileBiggener.runtimeconfig.json
+C:\Users\green\source\repos\FileBiggener\FileBiggener\bin\Debug\net8.0\FileBiggener.dll
+C:\Users\green\source\repos\FileBiggener\FileBiggener\bin\Debug\net8.0\FileBiggener.pdb
+C:\Users\green\source\repos\FileBiggener\FileBiggener\obj\Debug\net8.0\FileBiggener.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\green\source\repos\FileBiggener\FileBiggener\obj\Debug\net8.0\FileBiggener.AssemblyInfoInputs.cache
+C:\Users\green\source\repos\FileBiggener\FileBiggener\obj\Debug\net8.0\FileBiggener.AssemblyInfo.cs
+C:\Users\green\source\repos\FileBiggener\FileBiggener\obj\Debug\net8.0\FileBiggener.csproj.CoreCompileInputs.cache
+C:\Users\green\source\repos\FileBiggener\FileBiggener\obj\Debug\net8.0\FileBiggener.dll
+C:\Users\green\source\repos\FileBiggener\FileBiggener\obj\Debug\net8.0\refint\FileBiggener.dll
+C:\Users\green\source\repos\FileBiggener\FileBiggener\obj\Debug\net8.0\FileBiggener.pdb
+C:\Users\green\source\repos\FileBiggener\FileBiggener\obj\Debug\net8.0\FileBiggener.genruntimeconfig.cache
+C:\Users\green\source\repos\FileBiggener\FileBiggener\obj\Debug\net8.0\ref\FileBiggener.dll
