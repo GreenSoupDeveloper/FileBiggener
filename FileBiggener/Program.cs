@@ -11,6 +11,10 @@ class Program
     public static string fileFormatVer = "v1";
     public static void Main(string[] args)
     {
+        if(!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + "\\temp"))
+        {
+            Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + "\\temp");
+        }
         try
         {
             System.IO.DirectoryInfo di = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory + "temp");

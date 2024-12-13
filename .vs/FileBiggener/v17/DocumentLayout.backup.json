@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\green\\source\\repos\\FileBiggener\\",
+  "WorkspaceRootPath": "C:\\Users\\green\\Documents\\GitHub\\FileBiggener\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F54D2391-EA84-4CB3-B7CC-0A22881CCFA3}|FileBiggener\\FileBiggener.csproj|c:\\users\\green\\source\\repos\\filebiggener\\filebiggener\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F54D2391-EA84-4CB3-B7CC-0A22881CCFA3}|FileBiggener\\FileBiggener.csproj|c:\\users\\green\\documents\\github\\filebiggener\\filebiggener\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F54D2391-EA84-4CB3-B7CC-0A22881CCFA3}|FileBiggener\\FileBiggener.csproj|solutionrelative:filebiggener\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -20,11 +20,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\green\\source\\repos\\FileBiggener\\FileBiggener\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\green\\Documents\\GitHub\\FileBiggener\\FileBiggener\\Program.cs",
               "RelativeDocumentMoniker": "FileBiggener\\Program.cs",
-              "ToolTip": "C:\\Users\\green\\source\\repos\\FileBiggener\\FileBiggener\\Program.cs",
+              "ToolTip": "C:\\Users\\green\\Documents\\GitHub\\FileBiggener\\FileBiggener\\Program.cs",
               "RelativeToolTip": "FileBiggener\\Program.cs",
-              "ViewState": "AgIAAPIAAAAAAAAAAAAuwPoAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-12T00:06:39.113Z",
               "EditorCaption": ""
