@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\green\\source\\repos\\FileBiggener\\FileBiggener\\FileBiggener.csproj",
+      "projectUniqueName": "C:\\Users\\green\\Documents\\GitHub\\FileBiggener\\FileBiggener\\FileBiggener.csproj",
       "projectName": "FileBiggener",
-      "projectPath": "C:\\Users\\green\\source\\repos\\FileBiggener\\FileBiggener\\FileBiggener.csproj",
+      "projectPath": "C:\\Users\\green\\Documents\\GitHub\\FileBiggener\\FileBiggener\\FileBiggener.csproj",
       "packagesPath": "C:\\Users\\green\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\green\\source\\repos\\FileBiggener\\FileBiggener\\obj\\",
+      "outputPath": "C:\\Users\\green\\Documents\\GitHub\\FileBiggener\\FileBiggener\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
