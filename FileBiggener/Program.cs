@@ -7,16 +7,17 @@ using System.Drawing;
 class Program
 {
     public static bool isRunningThing = false;
-    public static string programVer = "1.0";
+    public static string programVer = "1.1";
     public static string fileFormatVer = "v1";
+    public static string[] urls;
     public static void Main(string[] args)
     {
-        if(!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + "\\temp"))
-        {
-            Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + "\\temp");
-        }
         try
         {
+            if (!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + "\\temp"))
+            {
+                Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + "\\temp");
+            }
             System.IO.DirectoryInfo di = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory + "temp");
             FileInfo[] TXTFiles = di.GetFiles("*.*");
             if (TXTFiles.Length != 0)
@@ -35,134 +36,164 @@ class Program
             }
             if (args.Length != 0)
             {
-
-                if (args.Length == 1)
+                Console.WriteLine("Welcome to the File Biggener v" + programVer + "!!\nThis tool makes your files bigger.\nBy greensoupdev.\n");
+                int thing = 0;
+                for (int i = 0; i < args.Length; i++)
                 {
-                    if (File.Exists(args[0]))
+                    if (args[i] == "-d")
                     {
-                        isRunningThing = true;
-                        RunThing(args[0]);
+                        continue;
+                    }
+                    else if (args[i] == "-b")
+                    {
+                        continue;
                     }
                     else
                     {
-                        Console.WriteLine("File Doesnt Exist.");
+                        thing++;
                     }
                 }
-                else if (args.Length == 2)
+                urls = new string[thing];
+                for (int i = 0; i < args.Length; i++)
                 {
-                    if (args[1] == "-d")
+
+                    if (args[i] == "-d")
                     {
-                        Debiggen(args[0],false);
+                        continue;
                     }
-                    else if (args[1] == "-b")
+                    else if (args[i] == "-b")
                     {
-                        Biggen(args[0],false);
+                        continue;
                     }
                     else
                     {
-                        Console.WriteLine("Unknown Argument.\n");
+                        urls[i] = args[i];
+
                     }
+
                 }
-                else if (args.Length == 3)
+                if (Path.GetExtension(args[0]) == ".gbf" && args.Length == 1)
                 {
-                    if (args[2] == "-dir")
-                    {
-                        Debiggen(args[0], true);
-                    }
-                    else if (args[2] == "-f")
-                    {
-                        Biggen(args[0], false);
-                    }
-                    else
-                    {
-                        Console.WriteLine("Unknown Argument.\n");
-                    }
+                    RunThing();
                 }
-                Environment.Exit(0);
-            }
-
-            Console.WriteLine("Welcome to the File Biggener v"+ programVer+"!!\nThis tool makes your files bigger.\nBy greensoupdev.\n");
-            Console.WriteLine("What do you want to do? (Biggen: 1 / Debiggen: 2)");
-            string response = Console.ReadLine()?.Trim();
-
-            switch (response)
-            {
-                case "1":
-                    Console.Write("Enter the path of your file: ");
-                    string biggenPath = Console.ReadLine()?.Trim();
-                    Biggen(biggenPath, false);
-                    Console.WriteLine("Press any key to exit..");
-                    string end1 = Console.ReadLine();
-                    break;
-
-                case "2":
-                    Console.Write("Enter the path of your file: ");
-                    string debiggenPath = Console.ReadLine()?.Trim();
-                    Debiggen(debiggenPath, false);
-                    Console.WriteLine("Press any key to exit..");
-                    string end2 = Console.ReadLine();
-                    break;
-
-                default:
-                    Console.WriteLine("Invalid option. \nPress any key to exit..");
-                    string end = Console.ReadLine();
-                    break;
-            }
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine($"Error: {e}");
-            throw;
-        }
-    }
-
-    public static void Biggen(string filePath, bool isBulk)
-    {
-        try
-        {
-            if (!File.Exists(filePath))
-            {
-                Console.WriteLine("File not found.");
-                return;
-            }
-            if (Path.GetExtension(filePath) != ".gbf")
-            {
-                Console.WriteLine("Biggening file...");
-                string outputFile = Path.ChangeExtension(filePath, ".gbf");
-
-                using (FileStream input = new FileStream(filePath, FileMode.Open, FileAccess.Read))
-                using (FileStream output = new FileStream(outputFile, FileMode.Create, FileAccess.Write))
+                else if (args[args.Length - 1] == "-d")
                 {
-                    // Write file name as hex at the beginning
-                    string fileNameHex = BitConverter.ToString(Encoding.UTF8.GetBytes(Path.GetFileName(filePath))).Replace("-", "");
-                    byte[] header = Encoding.UTF8.GetBytes(fileNameHex + "::"+ fileFormatVer + "\n");
-                    output.Write(header, 0, header.Length);
+                    Debiggen();
+                }
+                else if (args[args.Length - 1] == "-b")
+                {
+                    Biggen();
+                }
+                else
+                {
+                    Console.WriteLine("What do you want to do? (Biggen: 1 / Debiggen: 2)");
+                    string response = Console.ReadLine()?.Trim();
 
-                    // Process file in chunks
-                    byte[] buffer = new byte[8192];
-                    int bytesRead;
-                    int progress = 0;
-                    while ((bytesRead = input.Read(buffer, 0, buffer.Length)) > 0)
+                    switch (response)
                     {
-                        foreach (byte b in buffer[..bytesRead])
-                        {
-                            /*  progress++;
-                              Console.WriteLine(progress+" bytes of " + bytesRead);*/
-                            string binary = Convert.ToString(b, 2).PadLeft(8, '0');
-                            byte[] binaryBytes = Encoding.UTF8.GetBytes(binary);
-                            output.Write(binaryBytes, 0, binaryBytes.Length);
-                        }
+                        case "1":
+                            Biggen();
+                            break;
+
+                        case "2":
+                            Debiggen();
+                            break;
+
+                        default:
+                            Console.WriteLine("Invalid option.");
+                            break;
                     }
                 }
-
-                Console.WriteLine($"File BIGGENED! Output: {outputFile}");
             }
             else
             {
-                Console.WriteLine("You cannot make already biggened files more big...");
-                return;
+                Console.WriteLine("Welcome to the File Biggener v" + programVer + "!!\nThis tool makes your files bigger.\nBy greensoupdev.\n\nIf you want to biggen or debiggen stuff, you can just grab the files or folders to this program and boom.");
             }
+
         }
+        catch (Exception e)
+        {
+            Console.WriteLine($"Error: {e}");
+            throw;
+        }
+        Console.WriteLine("Press any key to exit..");
+        string end = Console.ReadLine();
+
+
+
+
+        /*  byte[] bytes = File.ReadAllBytes("hmm.wav");
+          //yo mama
+          File.WriteAllText("heeey.txt", string.Join(",", bytes));
+          string result = string.Join(",", bytes);
+          string hhhh = result;//File.ReadAllText("heeey.txt");
+          splittedThing = hhhh.Split(new string[] { "," }, StringSplitOptions.None);
+
+
+          var byt = splittedThing.Select(byte.Parse).ToArray();
+          File.WriteAllBytes("hahaaa.wav", byt);*/
+
+    }
+
+    public static void Biggen()
+    {
+        try
+        {
+            Console.WriteLine("Biggening file(s)...");
+            for (int i = 0; i < urls.Length; i++)
+            {
+                if (!File.Exists(urls[i]))
+                {
+                    Console.WriteLine("File not found.");
+                    continue;
+                }
+
+                if (Path.GetExtension(urls[i]) != ".gbf")
+                {
+
+                    string outputFile = Path.ChangeExtension(urls[i], ".gbf");
+
+                    using (FileStream input = new FileStream(urls[i], FileMode.Open, FileAccess.Read))
+                    using (FileStream output = new FileStream(outputFile, FileMode.Create, FileAccess.Write))
+                    {
+                        // Write file name as hex at the beginning
+                        string fileNameHex = BitConverter.ToString(Encoding.UTF8.GetBytes(Path.GetFileName(urls[i]))).Replace("-", "");
+                        Console.WriteLine("Biggening: " + Path.GetFileName(urls[i]));
+                        byte[] header = Encoding.UTF8.GetBytes(fileNameHex + "::" + fileFormatVer + "\n");
+                        output.Write(header, 0, header.Length);
+
+                        // Process file in chunks
+                        byte[] buffer = new byte[8192];
+                        int bytesRead;
+                        int progress = 0;
+                        while ((bytesRead = input.Read(buffer, 0, buffer.Length)) > 0)
+                        {
+                            foreach (byte b in buffer[..bytesRead])
+                            {
+                                /*  progress++;
+                                  Console.WriteLine(progress+" bytes of " + bytesRead);*/
+                                string binary = Convert.ToString(b, 2).PadLeft(8, '0');
+                                byte[] binaryBytes = Encoding.UTF8.GetBytes(binary);
+                                output.Write(binaryBytes, 0, binaryBytes.Length);
+                            }
+                        }
+                    }
+
+
+
+                }
+
+
+                else
+                {
+                    Console.WriteLine("You cannot make already biggened files more big...");
+                    continue;
+                }
+
+            }
+            Console.WriteLine($"File(s) BIGGENED!");
+        }
+
         catch (Exception e)
         {
             Console.WriteLine($"Error: {e}");
@@ -170,29 +201,32 @@ class Program
         }
     }
 
-    public static void Debiggen(string filePath, bool isBulk)
+    public static void Debiggen()
     {
         try
         {
-            if (!isBulk)
+
+            Console.WriteLine("Debiggening file(s)...");
+            for (int i = 0; i < urls.Length; i++)
             {
-                if (!File.Exists(filePath))
+                if (!File.Exists(urls[i]))
                 {
                     Console.WriteLine("File not found.");
-                    return;
+                    continue;
                 }
-                if (Path.GetExtension(filePath) != ".gbf")
+                if (Path.GetExtension(urls[i]) != ".gbf")
                 {
                     Console.WriteLine("This is not a .GBF file.");
-                    return;
+                    continue;
                 }
 
-                Console.WriteLine("Debiggening file...");
-                string[] lines = File.ReadAllLines(filePath);
+
+                string[] lines = File.ReadAllLines(urls[i]);
 
                 // Extract original file name from hex
                 string[] thiinger = lines[0].Split(new string[] { "::" }, StringSplitOptions.None);
                 string fileName = Encoding.UTF8.GetString(FromHex(thiinger[0].Trim()));
+                Console.WriteLine("Debiggening: " + fileName);
                 string fileVersion = thiinger[1];
                 string outputPath = "";
                 if (isRunningThing)
@@ -201,28 +235,25 @@ class Program
                 }
                 else
                 {
-                    outputPath = Path.Combine(Path.GetDirectoryName(filePath), "GBF_" + fileName);
+
+                    outputPath = Path.Combine(Path.GetDirectoryName(urls[i]), "BG_" + fileName);
                 }
 
                 using (FileStream output = new FileStream(outputPath, FileMode.Create, FileAccess.Write))
                 {
                     string binaryData = lines[1];
-                    for (int i = 0; i < binaryData.Length; i += 8)
+                    for (int j = 0; j < binaryData.Length; j += 8)
                     {
-                        string byteString = binaryData.Substring(i, 8);
+                        string byteString = binaryData.Substring(j, 8);
                         byte b = Convert.ToByte(byteString, 2);
                         output.WriteByte(b);
                     }
                 }
 
-                Console.WriteLine($"File DEBIGGENED! Output: {outputPath}");
+
             }
-            //pls write bulk decompression and compression tihng
-            else
-            {
-              
-               
-            }
+            Console.WriteLine($"File(s) DEBIGGENED!");
+
         }
         catch (Exception e)
         {
@@ -249,22 +280,40 @@ class Program
         }
     }
 
-    public static void RunThing(string filePath)
+    public static void RunThing()
     {
         try
         {
+            Console.WriteLine("What do you want to do? (Run: 1 / Debiggen: 2)");
+            string response = Console.ReadLine()?.Trim();
+
+            switch (response)
+            {
+                case "2":
+                    isRunningThing = false;
+                    Debiggen();
+                    return;
+
+                case "1":
+                    isRunningThing = true;
+                    break;
+
+                default:
+                    Console.WriteLine("Invalid option. \nPress any key to exit..");
+                    break;
+            }
             Console.WriteLine("Opening file...");
             string tempDir = AppDomain.CurrentDomain.BaseDirectory + "\\temp";
             Directory.CreateDirectory(tempDir);
 
-            string[] lines = File.ReadAllLines(filePath);
+            string[] lines = File.ReadAllLines(urls[0]);
             string[] thiinger = lines[0].Split(new string[] { "::" }, StringSplitOptions.None);
             string fileName = Encoding.UTF8.GetString(FromHex(thiinger[0].Trim()));
             string tempFilePath = tempDir + "\\" + fileName;
 
             if (!File.Exists(tempFilePath))
             {
-                Debiggen(filePath, false);
+                Debiggen();
             }
             File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "\\exec.bat", "\"" + tempFilePath + "\"");
             Process.Start(AppDomain.CurrentDomain.BaseDirectory + "\\exe.bat");
