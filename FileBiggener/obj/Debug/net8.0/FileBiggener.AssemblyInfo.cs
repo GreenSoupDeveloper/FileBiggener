@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FileBiggener")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f1976b0ab1e595b06b160953214035c70e43ee46")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+734010bfabd2179716e603e66965f310bdb50843")]
 [assembly: System.Reflection.AssemblyProductAttribute("FileBiggener")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FileBiggener")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

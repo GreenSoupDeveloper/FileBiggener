@@ -216,7 +216,7 @@ class Program
                 }
                 if (Path.GetExtension(urls[i]) != ".gbf")
                 {
-                    Console.WriteLine("This is not a .GBF file.");
+                    Console.WriteLine("This is not a biggened file.");
                     continue;
                 }
 
